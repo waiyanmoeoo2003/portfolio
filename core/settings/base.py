@@ -11,7 +11,9 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
+from .third_party.versatileimage import *
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -37,6 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'versatileimagefield',
+
+    'account',
+    'portfolio',
+    'blog',
 ]
 
 MIDDLEWARE = [
@@ -66,6 +74,12 @@ TEMPLATES = [
         },
     },
 ]
+
+AUTH_USER_MODEL = 'account.User'
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
@@ -120,4 +134,10 @@ STATIC_URL = 'static/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
+MEDIA_DIR = Path(__file__).resolve().parent.parent.parent
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(MEDIA_DIR, 'media')
+# print(MEDIA_ROOT)
+# print(MEDIA_URL)
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
