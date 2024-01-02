@@ -19,3 +19,17 @@ class Portfolio(models.Model):
     status = models.BooleanField(default = 0 , verbose_name = _("Portfolio Status"))
     created = models.DateTimeField(auto_now_add=True, verbose_name=_("Created Time"))
     updated = models.DateTimeField(auto_now=True, verbose_name=_("Last Updated Time"))
+
+
+    @classmethod
+    def check_status(self):
+        is_portfolio_active = bool(self.objects.filter(status = True))
+        return is_portfolio_active
+    
+    def change_status(self):
+        self.status = not bool(self.status)
+        print(self.status)
+        self.save()
+
+    def __str__(self):
+        return self.name

@@ -8,7 +8,7 @@ from rest_framework import status
 
 from .serializers import UserSerializer, TokenObtainPairSerializer , UserProfileSerializer
 
-from ..models import User
+from account.models import User
 class RegisterView(APIView):
     http_method_names = ['post']
 
