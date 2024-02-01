@@ -6,7 +6,8 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 
-from .serializers import UserSerializer, TokenObtainPairSerializer , UserProfileSerializer
+from .serializers import UserSerializer, TokenObtainPairSerializer, UserProfileSerializer, \
+    CustomTokenObtainPairSerializer
 
 from account.models import User
 class RegisterView(APIView):
@@ -29,4 +30,4 @@ class UserProfileView(APIView):
 
 
 class EmailTokenObtainPairView(TokenObtainPairView):
-    serializer_class = TokenObtainPairSerializer
+    serializer_class = CustomTokenObtainPairSerializer
